@@ -1,0 +1,4 @@
+/blogs/
+env* 
+__pycache__/
+.sesskey
