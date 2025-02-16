@@ -1,5 +1,12 @@
 from fasthtml.common import *
 import os 
+from utils import get_all_blogs 
+from typing import Dict 
+from models import BlogPost 
+from utils import render_blog_post
+
+blog_posts : Dict[str, BlogPost] = get_all_blogs()
+
 
 app, rt = fast_app(hdrs=(
     Link(rel='stylesheet', href='https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Playfair+Display:wght@400;700&display=swap'),
@@ -92,21 +99,47 @@ def home():
 
 @rt("/blog")
 def get():
+    
+    blog_list = Ul(
+        *[Li(
+            Article(
+                H3(A(post.title, href=f"/blog/{slug}")),
+                P(post.date.strftime('%B %d, %Y')),
+                P(post.description, style="color: #666;"),
+                Div(
+                    *[Span(tag, style="background: #eee; padding: 2px 8px; border-radius: 12px; margin-right: 8px;")
+                      for tag in post.tags],
+                    style="margin-top: 8px;"
+                ),
+                style="margin-bottom: 2em;"
+            )
+        ) for slug, post in blog_posts.items()],
+        style="list-style: none; padding: 0;"
+    )
+    
     return page_layout(
         "",
         Div(
-            P("Welcome to my blog. This will be a collection of my various ramblings")
+            P("Welcome to my blog. This will be a collection of my various ramblings",
+              style="font-size: 1.1rem; margin-bottom: 0.5rem;"),  # Increased font size
+            Div(
+                H3("Posts"),
+                blog_list,
+                style="max-width: 800px; margin: 0; padding: 20px;"  # Removed 'margin: 0 auto' to left-align
+            )
         )
+        
     )
 
-@rt("/blog/{post_id}")
-def get(post_id: str):
+
+@rt("/blog/{slug}")
+def get(slug: str):
     try:
-        with open(f"blogs/{post_id}.html", "r") as file:
-            content = file.read()
-        return page_layout(
-            f"Blog Post: {post_id}",
-            NotStr(content)
+        post = blog_posts[slug]
+        html_content = render_blog_post(post)
+        return page_layout( 
+            f"",
+            NotStr(html_content)
         )
     except FileNotFoundError:
         return page_layout(
