@@ -46,6 +46,8 @@ def get_all_blogs() -> List[BlogPost] :
     blogs_dir = Path('blogs')
     blogs = {}
     for md_file in blogs_dir.glob('*.md') : 
+        if md_file.stem == 'template' : 
+            continue 
         blog_data = get_blog_metadata(md_file)
         blogs[blog_data.slug] = blog_data 
 
