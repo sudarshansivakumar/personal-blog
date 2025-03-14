@@ -133,21 +133,8 @@ def render_blog_post(post : BlogPost) -> str :
     # Convert markdown to HTML
     content_html = md.convert(post.content)
     
-    # Create a more accurate reading time estimate
-    word_count = len(post.content.split())
-    code_block_count = post.content.count("```")
-    table_row_count = post.content.count("|")
-    
-    # Basic reading time based on words
-    reading_time = max(1, round(word_count / 200))
-    if code_block_count > 0: reading_time += 1
-    if table_row_count > 10: reading_time += 1
-    
     # Format the date
     formatted_date = post.date.strftime('%B %d, %Y')
-    
-    # Don't apply special styling to first paragraph
-    # Regular content HTML without first paragraph special treatment
     
     # Check if there's a subtitle/deck in frontmatter
     subtitle_html = ""
@@ -171,7 +158,7 @@ def render_blog_post(post : BlogPost) -> str :
     if hasattr(post, 'author') and post.author:
         author_html = f'<div class="post-author">By {post.author}</div>'
 
-    # Add a minimalist HTML structure without tags
+    # Add a minimalist HTML structure without reading time
     return f"""
     <article class="blog-post">
         <header class="post-header">
@@ -179,7 +166,6 @@ def render_blog_post(post : BlogPost) -> str :
             {subtitle_html}
             <div class="post-meta">
                 <time datetime="{post.date.isoformat()}">{formatted_date}</time>
-                <span class="reading-time">• {reading_time} min read</span>
             </div>
         </header>
         {featured_image_html}

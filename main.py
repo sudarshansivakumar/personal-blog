@@ -280,11 +280,12 @@ css_style = Style("""
         }
 
         .post-title {
-            font-size: 1.7rem;
+            font-size: 1.3rem;
             line-height: 1.2;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
             letter-spacing: -0.01em;
-            font-weight: 600;
+            font-weight: 500;
+            text-align: left;
         }
 
         /* Blog articles styling */
@@ -395,22 +396,22 @@ css_style = Style("""
             letter-spacing: -0.01em;
             font-weight: 700;
         }
-
+        
         /* Blog list styling */
         .blog-list {
             list-style: none;
             padding: 0;
             margin-top: 2rem;
         }
-
+        
         .blog-list li {
             transition: transform 0.2s ease;
         }
-
+        
         .blog-list li:hover {
             transform: translateX(3px);
         }
-
+        
         .blog-list article {
             margin-bottom: 1.25rem;
             padding-bottom: 1.25rem;
@@ -419,17 +420,17 @@ css_style = Style("""
             align-items: flex-start;
             gap: 1.5rem;
         }
-
+        
         .blog-list .article-main {
             flex: 1;
         }
-
+        
         .blog-list .article-meta {
             width: 130px;
             text-align: right;
             font-size: 0.85rem;
         }
-
+        
         .blog-list h3 {
             margin-top: 0;
             margin-bottom: 0.3rem;
@@ -437,18 +438,18 @@ css_style = Style("""
             letter-spacing: -0.02em;
             line-height: 1.2;
         }
-
+        
         .blog-list h3 a {
             text-decoration: none;
             color: var(--text-color);
             transition: color 0.2s;
             position: relative;
         }
-
+        
         .blog-list h3 a:hover {
             color: var(--accent-color);
         }
-
+        
         .blog-list h3 a::after {
             content: '';
             position: absolute;
@@ -459,42 +460,42 @@ css_style = Style("""
             background-color: var(--accent-color);
             transition: width 0.3s ease;
         }
-
+        
         .blog-list h3 a:hover::after {
             width: 100%;
         }
-
+        
         .blog-meta {
             margin-bottom: 0.5rem;
             color: var(--muted-text);
         }
-
+        
         .blog-date {
             font-size: 0.85rem;
             font-style: italic;
         }
-
+        
         .reading-time {
             display: block;
             font-size: 0.8rem;
             color: var(--muted-text);
             margin-top: 0.25rem;
         }
-
+        
         .blog-desc {
             font-size: 1rem;
             margin-bottom: 0.75rem;
             line-height: 1.4;
             color: #444;
         }
-
+        
         .tag-container {
             display: flex;
             flex-wrap: wrap;
             gap: 0.35rem;
             margin-top: 0.75rem;
         }
-
+        
         .tag {
             background: var(--light-gray);
             padding: 2px 6px;
@@ -504,7 +505,7 @@ css_style = Style("""
             text-transform: uppercase;
             letter-spacing: 0.02em;
         }
-
+        
         @media (max-width: 768px) {
             .blog-list article {
                 flex-direction: column;
@@ -517,7 +518,7 @@ css_style = Style("""
                 order: -1;
             }
         }
-
+        
         /* Blog post styling */
         .blog-post {
             border: none;
@@ -631,7 +632,7 @@ css_style = Style("""
         .pull-quote::after {
             content: none;
         }
-
+        
         .post-tags {
             margin: 1rem 0;
             display: flex;
@@ -660,7 +661,7 @@ def page_layout(title, content):
         create_menu(),
         Main(
             Div(
-                Container(content),
+            Container(content),
                 cls="blog-post-wrapper"
             ),
             cls="main-content"
@@ -726,27 +727,12 @@ def get():
     blog_items = []
     
     for slug, post in blog_posts.items():
-        # Use a more accurate reading time calculation
-        word_count = len(post.content.split())
-        # Count code blocks and tables which take longer to read
-        code_block_count = post.content.count("```")
-        table_row_count = post.content.count("|")
-        
-        # Basic reading time based on words
-        reading_time = max(1, round(word_count / 200))
-        
-        # Add additional time for code blocks and tables
-        if code_block_count > 0:
-            reading_time += 1
-        if table_row_count > 10:
-            reading_time += 1
-        
-        # Create a minimalist article layout - no bullets, smaller titles
+        # Create a minimalist article layout without reading time
         article = Div(
             Div(
                 H3(A(post.title, href=f"/blog/{slug}"), style="font-size: 1.2rem; margin-bottom: 0.5rem; font-weight: 500;"),
                 P(post.description, style="margin-bottom: 0.3rem; color: #555;"),
-                P(f"{post.date.strftime('%b %d, %Y')} • {reading_time} min read", 
+                P(f"{post.date.strftime('%b %d, %Y')}", 
                   style="font-size: 0.85rem; color: #777; font-style: italic;"),
                 style="margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid #eee;"
             )
