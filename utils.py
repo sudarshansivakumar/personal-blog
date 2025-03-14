@@ -133,48 +133,44 @@ def render_blog_post(post : BlogPost) -> str :
     # Convert markdown to HTML
     content_html = md.convert(post.content)
     
-    # Create a more accurate reading time estimate
-    # Count words, divide by average reading speed (200 words/min)
-    # Add extra time for tables and code blocks which take longer to process
-    word_count = len(post.content.split())
-    # Count code blocks and tables which take longer to read
-    code_block_count = post.content.count("```")
-    table_row_count = post.content.count("|")
-    
-    # Basic reading time based on words
-    reading_time = max(1, round(word_count / 200))
-    
-    # Add additional time for code blocks and tables
-    if code_block_count > 0:
-        reading_time += 1
-    if table_row_count > 10:
-        reading_time += 1
-    
     # Format the date
     formatted_date = post.date.strftime('%B %d, %Y')
     
-    # Generate tags HTML if there are tags
-    tags_html = ""
-    if post.tags:
-        tags_html = '<div class="post-tags">' + ''.join([f'<span class="tag">{tag}</span>' for tag in post.tags]) + '</div>'
+    # Check if there's a subtitle/deck in frontmatter
+    subtitle_html = ""
+    if hasattr(post, 'subtitle') and post.subtitle:
+        subtitle_html = f'<div class="post-subtitle">{post.subtitle}</div>'
     
-    # Create a "first paragraph" class for the first paragraph in the post
-    content_html_with_first_p = content_html.replace('<p>', '<p class="first-paragraph">', 1)
+    # Featured image if available
+    featured_image_html = ""
+    if hasattr(post, 'featured_image') and post.featured_image:
+        caption = getattr(post, 'image_caption', '')
+        caption_html = f'<figcaption>{caption}</figcaption>' if caption else ''
+        featured_image_html = f'''
+        <figure class="featured-image">
+            <img src="{post.featured_image}" alt="{post.title}" />
+            {caption_html}
+        </figure>
+        '''
     
-    # Add a decorative line element and structured HTML
+    # Add author byline if available
+    author_html = ""
+    if hasattr(post, 'author') and post.author:
+        author_html = f'<div class="post-author">By {post.author}</div>'
+
+    # Add a minimalist HTML structure without reading time
     return f"""
     <article class="blog-post">
         <header class="post-header">
-            <h1>{post.title}</h1>
+            <h1 class="post-title">{post.title}</h1>
+            {subtitle_html}
             <div class="post-meta">
                 <time datetime="{post.date.isoformat()}">{formatted_date}</time>
-                <span class="reading-time">{reading_time} min read</span>
             </div>
-            {tags_html}
-            <div class="post-divider"></div>
         </header>
+        {featured_image_html}
         <div class="post-content">
-            {content_html_with_first_p}
+            {content_html}
         </div>
     </article>
     """
