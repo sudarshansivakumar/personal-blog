@@ -111,96 +111,61 @@ css_style = Style("""
             font-size: 1.1rem;
         }
         
-        /* Blog list styling */
+        /* Blog list styling - creative timeline-inspired design */
         .blog-list {
-            list-style: none;
+            max-width: 700px;
+            margin: 2rem auto 0;
             padding: 0;
-            margin-top: 2rem;
+            list-style: none;
         }
         
-        .blog-list li {
-            transition: transform 0.2s ease;
+        .blog-item {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #ddd;
         }
         
-        .blog-list li:hover {
-            transform: translateX(3px);
+        .blog-item:last-child {
+            border-bottom: none;
         }
         
-        .blog-list article {
-            margin-bottom: 1.25rem;
-            padding-bottom: 1.25rem;
-            border-bottom: 1px solid var(--border-color);
-            display: flex;
-            align-items: flex-start;
-            gap: 1.5rem;
+        .blog-item h3 {
+            font-size: 1.5rem;
+            margin: 0 0 0.5rem;
+            line-height: 1.3;
+            font-weight: 600;
         }
         
-        .blog-list .article-main {
-            flex: 1;
-        }
-        
-        .blog-list .article-meta {
-            width: 130px;
-            text-align: right;
-            font-size: 0.85rem;
-        }
-        
-        .blog-list h3 {
-            margin-top: 0;
-            margin-bottom: 0.3rem;
-            font-size: 1.6rem;
-            letter-spacing: -0.02em;
-            line-height: 1.2;
-        }
-        
-        .blog-list h3 a {
+        .blog-item h3 a {
             text-decoration: none;
             color: var(--text-color);
             transition: color 0.2s;
-            position: relative;
         }
         
-        .blog-list h3 a:hover {
+        .blog-item h3 a:hover {
             color: var(--accent-color);
         }
         
-        .blog-list h3 a::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background-color: var(--accent-color);
-            transition: width 0.3s ease;
-        }
-        
-        .blog-list h3 a:hover::after {
-            width: 100%;
+        .blog-desc {
+            color: #555;
+            margin: 0 0 0.7rem;
+            font-size: 0.95rem;
+            line-height: 1.5;
         }
         
         .blog-meta {
-            margin-bottom: 0.5rem;
-            color: var(--muted-text);
-        }
-        
-        .blog-date {
+            color: #777;
             font-size: 0.85rem;
+        }
+        
+        /* Style for the collection heading */
+        .blog-content > p:first-child {
+            font-size: 1.2rem;
+            color: #555;
+            margin: 0 0 2.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
             font-style: italic;
-        }
-        
-        .reading-time {
-            display: block;
-            font-size: 0.8rem;
-            color: var(--muted-text);
-            margin-top: 0.25rem;
-        }
-        
-        .blog-desc {
-            font-size: 1rem;
-            margin-bottom: 0.75rem;
-            line-height: 1.4;
-            color: #444;
         }
         
         .tag-container {
@@ -220,28 +185,13 @@ css_style = Style("""
             letter-spacing: 0.02em;
         }
         
-        @media (max-width: 768px) {
-            .blog-list article {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-            
-            .blog-list .article-meta {
-                width: 100%;
-                text-align: left;
-                order: -1;
-            }
-        }
-        
         /* Blog content integration */
         .blog-content {
-            max-width: 900px;
+            max-width: 700px;
             margin: 0 auto;
-            padding: 0 1.5rem;
+            padding: 0 1rem;
             position: relative;
             background-color: transparent;
-            box-shadow: none;
-            border: none;
         }
         
         .blog-content img {
@@ -249,7 +199,7 @@ css_style = Style("""
             height: auto;
             display: block;
             margin: 2rem auto;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
         
         .blog-content a {
@@ -797,32 +747,26 @@ def get():
         if table_row_count > 10:
             reading_time += 1
         
-        article = Article(
+        # Create a minimalist article layout - no bullets, smaller titles
+        article = Div(
             Div(
-                H3(A(post.title, href=f"/blog/{slug}")),
-                P(post.description, cls="blog-desc"),
-                Div(
-                    *[Span(tag, cls="tag") for tag in post.tags],
-                    cls="tag-container"
-                ) if post.tags else "",
-                cls="article-main"
-            ),
-            Div(
-                P(post.date.strftime('%b %d, %Y'), cls="blog-date"),
-                Span(f"{reading_time} min read", cls="reading-time"),
-                cls="article-meta"
+                H3(A(post.title, href=f"/blog/{slug}"), style="font-size: 1.2rem; margin-bottom: 0.5rem; font-weight: 500;"),
+                P(post.description, style="margin-bottom: 0.3rem; color: #555;"),
+                P(f"{post.date.strftime('%b %d, %Y')} • {reading_time} min read", 
+                  style="font-size: 0.85rem; color: #777; font-style: italic;"),
+                style="margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid #eee;"
             )
         )
-        blog_items.append(Li(article))
+        blog_items.append(article)
     
-    blog_list = Ul(*blog_items, cls="blog-list")
+    # Use a Div instead of a list to remove bullets
+    blog_list = Div(*blog_items, style="margin-top: 2rem;")
     
     page_content = Div(
         P(
             "A collection of my thoughts and explorations.",
-            style="font-size: 1.2rem; margin-bottom: 1rem; font-style: italic; color: var(--muted-text);"
+            style="font-style: italic; color: #555; margin-bottom: 1.5rem;"
         ),
-        Div(style="width: 50px; height: 3px; background-color: var(--accent-color); margin-bottom: 2rem;"),
         blog_list,
         cls="blog-content"
     )
