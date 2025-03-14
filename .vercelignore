@@ -1,4 +1,6 @@
+/blogs/
 env* 
 __pycache__/
 .sesskey
 .vercel
+*env*/ 
