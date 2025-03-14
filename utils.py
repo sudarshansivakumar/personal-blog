@@ -160,12 +160,47 @@ def render_blog_post(post : BlogPost) -> str :
     
     # Create a "first paragraph" class for the first paragraph in the post
     content_html_with_first_p = content_html.replace('<p>', '<p class="first-paragraph">', 1)
+
+    # Check if there's a subtitle/deck in frontmatter
+    subtitle_html = ""
+    if hasattr(post, 'subtitle') and post.subtitle:
+        subtitle_html = f'<div class="post-subtitle">{post.subtitle}</div>'
     
+    # Check if there's a featured image in frontmatter
+    featured_image_html = ""
+    if hasattr(post, 'featured_image') and post.featured_image:
+        caption = getattr(post, 'image_caption', '')
+        caption_html = f'<figcaption>{caption}</figcaption>' if caption else ''
+        featured_image_html = f'''
+        <figure class="featured-image">
+            <img src="{post.featured_image}" alt="{post.title}" />
+            {caption_html}
+        </figure>
+        '''
+    
+    # Look for any blockquotes and convert some to special pull quotes
+    if '<!-- pull-quote -->' in content_html_with_first_p:
+        content_html_with_first_p = content_html_with_first_p.replace(
+            '<!-- pull-quote -->', 
+            '<span class="pull-quote-marker"></span>'
+        )
+        content_html_with_first_p = content_html_with_first_p.replace(
+            '<blockquote>\n<p><span class="pull-quote-marker"></span>', 
+            '<blockquote class="pull-quote"><p>'
+        )
+    
+    # Add author byline if available
+    author_html = ""
+    if hasattr(post, 'author') and post.author:
+        author_html = f'<div class="post-author">By {post.author}</div>'
+
     # Add a decorative line element and structured HTML
     return f"""
     <article class="blog-post">
         <header class="post-header">
             <h1>{post.title}</h1>
+            {subtitle_html}
+            {author_html}
             <div class="post-meta">
                 <time datetime="{post.date.isoformat()}">{formatted_date}</time>
                 <span class="reading-time">{reading_time} min read</span>
@@ -173,6 +208,7 @@ def render_blog_post(post : BlogPost) -> str :
             {tags_html}
             <div class="post-divider"></div>
         </header>
+        {featured_image_html}
         <div class="post-content">
             {content_html_with_first_p}
         </div>
