@@ -187,11 +187,10 @@ css_style = Style("""
         
         /* Blog content integration */
         .blog-content {
-            max-width: 700px;
+            max-width: 950px;
             margin: 0 auto;
             padding: 0 1rem;
             position: relative;
-            background-color: transparent;
         }
         
         .blog-content img {
@@ -274,20 +273,18 @@ css_style = Style("""
 
         /* Blog post specific styles */
         .post-header {
-            margin-top: 40px;
-            margin-bottom: 2.5rem;
-            padding-bottom: 1.2rem;
-            text-align: center;
-            position: relative;
-            border-bottom: none;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
         }
 
-        .post-header h1, .post-title {
-            font-size: 2.2rem;
+        .post-title {
+            font-size: 1.7rem;
             line-height: 1.2;
-            margin-bottom: 1.2rem;
+            margin-bottom: 1rem;
             letter-spacing: -0.01em;
-            font-weight: 700;
+            font-weight: 600;
         }
 
         /* Blog articles styling */
@@ -535,18 +532,18 @@ css_style = Style("""
         }
 
         .post-content .first-paragraph {
-            font-size: 1.3rem;
-            line-height: 1.6;
-            margin-bottom: 2rem;
+            font-size: 1rem;
+            line-height: inherit;
+            margin-bottom: inherit;
         }
 
         .post-content .first-paragraph::first-letter {
-            float: left;
-            font-size: 3.5rem;
-            line-height: 1;
-            padding: 0.1em 0.1em 0 0;
-            font-weight: 700;
-            color: var(--accent-color);
+            float: none;
+            font-size: inherit;
+            line-height: inherit;
+            padding: 0;
+            font-weight: inherit;
+            color: inherit;
         }
 
         .post-content p {
@@ -568,10 +565,7 @@ css_style = Style("""
         }
 
         .post-divider {
-            width: 50px;
-            height: 2px;
-            background-color: var(--accent-color);
-            margin: 0 auto 2rem;
+            display: none;
         }
 
         /* Featured image styling */
