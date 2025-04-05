@@ -55,3 +55,20 @@ export async function load({ params }: PageServerLoadEvent) {
         error(500, 'Could not load post');
     }
 }
+
+// Add this function to generate entries for prerendering
+export async function entries() {
+    const postsDir = path.join(process.cwd(), 'content', 'posts');
+    try {
+        const allFilenames = fs.readdirSync(postsDir);
+        // Filter for markdown files, exclude template, and map to slug objects
+        const slugs = allFilenames
+            .filter(filename => filename.endsWith('.md') && filename !== 'template.md')
+            .map(filename => ({ slug: filename.replace(/\.md$/, '') })); 
+        return slugs;
+    } catch (error) {
+        // Log error and return empty array if directory read fails
+        console.error("Error reading posts directory for prerendering entries:", error);
+        return []; 
+    }
+}
