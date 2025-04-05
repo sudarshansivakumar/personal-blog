@@ -14,7 +14,7 @@ interface PostMetadata {
 // Type definition for the page load function
 /** @type {import('./$types').PageServerLoad} */
 export async function load() {
-    const postsDir = path.join(process.cwd(), 'src', 'lib', 'content', 'posts');
+    const postsDir = path.join(process.cwd(), 'content', 'posts');
     const allFilenames = fs.readdirSync(postsDir);
 
     // Filter out the template file by its name
