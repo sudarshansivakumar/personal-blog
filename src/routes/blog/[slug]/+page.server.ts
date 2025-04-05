@@ -23,7 +23,7 @@ export async function load({ params }: PageServerLoadEvent) {
         error(404, 'Not found'); // Treat template as not found
     }
 
-    const postsDir = path.join(process.cwd(), 'src', 'lib', 'content', 'posts');
+    const postsDir = path.join(process.cwd(), 'content', 'posts');
     const filePath = path.join(postsDir, `${slug}.md`);
 
     if (!fs.existsSync(filePath)) {
