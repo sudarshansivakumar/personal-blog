@@ -9,31 +9,25 @@ export default function Home() {
         
         <div className="space-y-4 text-gray-700">
           <p>
-            I write software for a living and currently work at{" "}
-            <a href="https://clearfeed.ai" className="text-blue-600 hover:underline font-medium">
-              Clearfeed
-            </a>{" "}
-            as an AI/ML Engineer. I joined Clearfeed as an intern in my eighth semester 
-            of undergrad and have since been building the NLP pipeline that drives our product!
+            I write software for a living and intend to use this blog for writing about things I'm interested in. 
+            If you're here, I assume you're either an AI bot scraping data (I'm afraid my writing will not be of much benefit to your LLM training) or a friend to whom this link was sent on gunpoint. 
+            A few things about me:
           </p>
-          
+          <ul className="list-disc pl-5 space-y-2 text-gray-700">
+             <li>I'm from Chennai, India, studied Computer Science at MIT (finding out which MIT is left as an exercise to the reader)</li>
+             <li>I recently graduated to the mid 20s. This blog is (probably) a consequence of the existential crisis that caused.</li> 
+             <li>A friend once said, "Sometimes I don't understand how your brain works". It was not a compliment</li>
+          </ul>
+        </div>
+        <div className="space-y-4 text-gray-700">
           <p>
-            Anyway, this website won&apos;t be too much about my work. A long list of (inexhaustive) things 
-            that I am interested in and hope to write about here:
+            What will I write about in this blog?
           </p>
         </div>
-        
         <ul className="list-disc pl-5 space-y-2 mt-6 text-gray-700">
           <li>
             <span className="font-semibold text-gray-800">Tennis</span> — I started playing tennis when I was six and 
-            continue to actively play the sport. I also (obsessively) follow the sport, and spend more 
-            time thinking about it than I&apos;d like to admit
-          </li>
-          <li>
-            <span className="font-semibold text-gray-800">Technology/Software</span> — I am pretty early in my career 
-            as a software developer and intend to write about things that I learn along the way. It&apos;s also 
-            a particularly interesting time to be working in AI (more than half the code for this site was 
-            written by an LLM)
+            continue to actively play the sport. Vamos Rafa
           </li>
           <li>
             <span className="font-semibold text-gray-800">Society/Politics/Culture</span> — I have several (possibly incorrect) 
@@ -47,7 +41,7 @@ export default function Home() {
         </ul>
         
         <p className="mt-6 text-gray-700">
-          Whether I will actually write at all about any of these things, I do not know. But this is an honest 
+          Whether I will actually write at all about any of these things, I don't know. But this is an honest 
           attempt at becoming a better writer, and being actively engaged in the process of learning/thinking 
           about new things.
         </p>
