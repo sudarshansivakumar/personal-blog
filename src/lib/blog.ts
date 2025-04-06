@@ -78,10 +78,12 @@ export function getAllPosts(): BlogPostData[] {
  * Reads a specific blog post file by slug, parses frontmatter and content.
  * Returns the full blog post object including content.
  */
-export function getPostBySlug(slug: string): BlogPost | null {
+export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
   const fullPath = path.join(postsDirectory, `${slug}.md`);
   try {
-    const fileContents = fs.readFileSync(fullPath, 'utf8');
+    // Asynchronously read the file (though fs.readFileSync is sync, we wrap in Promise for consistency)
+    const fileContents = await fs.promises.readFile(fullPath, 'utf8');
+    
     // Use gray-matter to parse the post metadata section
     const matterResult = matter(fileContents);
 
@@ -96,7 +98,15 @@ export function getPostBySlug(slug: string): BlogPost | null {
     };
   } catch (error) {
     // If the file doesn't exist or there's an error reading it
-    console.error(`Error reading post ${slug}:`, error);
-    return null;
+    // Check if it's a file not found error
+    if (error instanceof Error && (error as NodeJS.ErrnoException).code === 'ENOENT') {
+      // File not found is an expected case for dynamic routes, return null
+      return null; 
+    } else {
+      // Log other errors
+      console.error(`Error reading post ${slug}:`, error);
+      // Re-throw or return null depending on desired error handling for other errors
+      return null; 
+    }
   }
 } 

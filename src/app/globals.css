@@ -1,26 +1,84 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+/* 
+  Define base colors for a light theme. 
+  rgb(var(--background-rgb)) will be white or off-white.
+  rgb(var(--foreground-rgb)) will be dark gray/almost black.
+*/
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --foreground-rgb: 51, 51, 51; /* dark gray for text */
+  --background-rgb: 250, 250, 250; /* slightly off-white for background */
+  --accent-rgb: 59, 130, 246; /* blue accent color */
+  --accent-light-rgb: 219, 234, 254; /* light blue for highlights */
+  --muted-rgb: 107, 114, 128; /* muted text color */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* Apply the base theme colors to the body */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
+  font-family: var(--font-geist-sans, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif);
+  line-height: 1.6;
 }
+
+/* Basic link styling */
+a {
+  color: #2563eb;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Style basic code elements */
+code:not(pre > code) {
+  background-color: #f1f5f9;
+  color: #334155;
+  padding: 0.1rem 0.25rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+}
+
+/* Keep code blocks styled for readability */
+pre {
+  background-color: #1e293b;
+  color: white;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+
+/* Card and container styling */
+.card {
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.2s;
+}
+
+.card:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Navigation styling */
+nav a {
+  color: #374151;
+}
+
+nav a:hover {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+/* Headers and emphasis */
+h1, h2, h3, h4, h5, h6 {
+  color: #111827;
+  font-weight: 600;
+}
+
+/* Remove other conflicting @layer base rules if they existed */

@@ -1,6 +1,12 @@
 import Link from 'next/link';
 import { getAllPosts } from '@/lib/blog';
 import { formatDate } from '@/lib/utils'; // Assuming you have this utility
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Blog | Sudarshan's Blog",
+  description: "Browse all blog posts by Sudarshan"
+};
 
 export default function BlogListPage() {
   const posts = getAllPosts();

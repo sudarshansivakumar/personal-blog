@@ -4,6 +4,14 @@ import { notFound } from 'next/navigation';
 import { getAllPostSlugs, getPostBySlug } from '@/lib/blog';
 import { formatDate } from '@/lib/utils';
 import { MDXRemote } from 'next-mdx-remote/rsc';
+import remarkGfm from 'remark-gfm';
+
+const options = {
+  mdxOptions: {
+    remarkPlugins: [remarkGfm],
+    rehypePlugins: [],
+  },
+};
 
 interface Params {
   params: {
@@ -12,7 +20,7 @@ interface Params {
 }
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
-  const post = getPostBySlug(params.slug);
+  const post = await getPostBySlug(params.slug);
   
   if (!post) {
     return {
@@ -33,7 +41,7 @@ export async function generateStaticParams() {
 }
 
 export default async function BlogPostPage({ params }: Params) {
-  const post = getPostBySlug(params.slug);
+  const post = await getPostBySlug(params.slug);
   
   if (!post) {
     notFound();
@@ -70,7 +78,7 @@ export default async function BlogPostPage({ params }: Params) {
           )}
         </header>
         
-        <MDXRemote source={post.content} />
+        <MDXRemote source={post.content} options={options} />
       </article>
     </div>
   );
