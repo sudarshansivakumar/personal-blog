@@ -1,8 +1,8 @@
 import React from 'react';
-import { MDXRemote } from 'next-mdx-remote';
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 
 interface MarkdownRendererProps {
-  content: any;
+  content: MDXRemoteSerializeResult;
 }
 
 const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) => {

@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <main className="flex flex-col md:flex-row items-start justify-between gap-12">
       <div className="md:w-2/3 order-2 md:order-1">
-        <h1 className="text-4xl font-bold mb-4 mt-0 text-gray-900">Hi, I'm Sudarshan</h1>
+        <h1 className="text-4xl font-bold mb-4 mt-0 text-gray-900">Hi, I&apos;m Sudarshan</h1>
         <p className="text-lg mb-6 text-gray-600">Welcome to the repository of my intrusive thoughts</p>
         
         <div className="space-y-4 text-gray-700">
@@ -18,7 +18,7 @@ export default function Home() {
           </p>
           
           <p>
-            Anyway, this website won't be too much about my work. A long list of (inexhaustive) things 
+            Anyway, this website won&apos;t be too much about my work. A long list of (inexhaustive) things 
             that I am interested in and hope to write about here:
           </p>
         </div>
@@ -27,11 +27,11 @@ export default function Home() {
           <li>
             <span className="font-semibold text-gray-800">Tennis</span> — I started playing tennis when I was six and 
             continue to actively play the sport. I also (obsessively) follow the sport, and spend more 
-            time thinking about it than I'd like to admit
+            time thinking about it than I&apos;d like to admit
           </li>
           <li>
             <span className="font-semibold text-gray-800">Technology/Software</span> — I am pretty early in my career 
-            as a software developer and intend to write about things that I learn along the way. It's also 
+            as a software developer and intend to write about things that I learn along the way. It&apos;s also 
             a particularly interesting time to be working in AI (more than half the code for this site was 
             written by an LLM)
           </li>

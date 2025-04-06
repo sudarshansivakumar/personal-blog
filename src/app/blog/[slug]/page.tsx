@@ -5,6 +5,7 @@ import { getAllPostSlugs, getPostBySlug } from '@/lib/blog';
 import { formatDate } from '@/lib/utils';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import remarkGfm from 'remark-gfm';
+import Tag from '@/components/Tag';
 
 const options = {
   mdxOptions: {
@@ -13,35 +14,28 @@ const options = {
   },
 };
 
-interface Params {
-  params: {
-    slug: string;
-  };
+interface Props {
+  params: Promise<{ slug: string }>;
 }
 
-export async function generateMetadata({ params }: Params): Promise<Metadata> {
-  const post = await getPostBySlug(params.slug);
-  
-  if (!post) {
-    return {
-      title: 'Post Not Found',
-      description: 'This blog post could not be found.',
-    };
-  }
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const resolvedParams = await params;
+  const slug = resolvedParams.slug;
   
   return {
-    title: `${post.title} | Sudarshan's Blog`,
-    description: post.description,
-  };
+    title: `Testing Metadata for ${slug}`,
+    description: "Testing if metadata generation causes the error."
+  }
 }
 
-export async function generateStaticParams() {
+export function generateStaticParams() {
   const paths = getAllPostSlugs();
   return paths;
 }
 
-export default async function BlogPostPage({ params }: Params) {
-  const post = await getPostBySlug(params.slug);
+export default async function BlogPostPage({ params }: Props) {
+  const resolvedParams = await params;
+  const post = await getPostBySlug(resolvedParams.slug);
   
   if (!post) {
     notFound();
@@ -70,9 +64,7 @@ export default async function BlogPostPage({ params }: Params) {
           {post.tags && post.tags.length > 0 && (
             <div className="flex flex-wrap gap-2 mt-4">
               {post.tags.map((tag: string) => (
-                <span key={tag} className="bg-gray-200 text-gray-700 px-2.5 py-0.5 rounded-full text-sm font-medium">
-                  {tag}
-                </span>
+                <Tag key={tag} name={tag} />
               ))}
             </div>
           )}
