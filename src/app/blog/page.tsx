@@ -25,7 +25,7 @@ export default function BlogListPage() {
       </header>
 
       <main>
-        <h1 className="text-4xl font-bold mb-8">Blog Posts</h1>
+        <h1 className="text-4xl font-bold mb-8 mt-0">Blog Posts</h1>
 
         {posts.length === 0 ? (
           <p className="text-lg mb-12">No blog posts found. Check back soon!</p>
@@ -33,8 +33,8 @@ export default function BlogListPage() {
           <div className="grid gap-8">
             {posts.map((post) => (
               <article key={post.slug} className="p-6 border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
-                <h2 className="text-2xl font-semibold mb-2">
-                  <Link href={`/blog/${post.slug}`} className="hover:text-blue-700">
+                <h2 className="text-2xl font-semibold mb-2 mt-0">
+                  <Link href={`/blog/${post.slug}`}>
                     {post.title}
                   </Link>
                 </h2>
@@ -42,7 +42,7 @@ export default function BlogListPage() {
                   {formatDate(post.date)}
                 </div>
                 <p className="text-gray-600 mb-4">{post.description}</p>
-                <Link href={`/blog/${post.slug}`} className="text-blue-600 hover:underline font-medium">
+                <Link href={`/blog/${post.slug}`} className="font-medium">
                   Read more →
                 </Link>
               </article>
