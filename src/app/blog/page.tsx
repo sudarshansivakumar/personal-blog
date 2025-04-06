@@ -19,17 +19,6 @@ export default function BlogListPage() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
-      <header className="flex justify-start mb-8">
-        <nav className="flex space-x-6">
-          <Link href="/" className="text-lg font-semibold hover:underline">
-            Home
-          </Link>
-          <Link href="/blog" className="text-lg font-semibold hover:underline">
-            Blog
-          </Link>
-        </nav>
-      </header>
-
       <main>
         <h1 className="text-4xl font-bold mb-8 mt-0">Blog Posts</h1>
 
