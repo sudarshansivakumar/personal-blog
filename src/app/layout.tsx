@@ -16,6 +16,10 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Sudarshan's Blog",
   description: "Welcome to the repository of my intrusive thoughts",
+  icons: [
+    { rel: 'icon', url: '/icon.png' },
+    { rel: 'apple-touch-icon', url: '/icon.png' }
+  ]
 };
 
 export default function RootLayout({

@@ -21,11 +21,31 @@ interface Props {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const resolvedParams = await params;
   const slug = resolvedParams.slug;
+  const post = await getPostBySlug(slug);
+
+  if (!post) {
+    return {
+      title: 'Post Not Found',
+      description: 'The requested blog post could not be found',
+      icons: {
+        icon: [
+          { url: '/icon.png', type: 'image/png' },
+          { url: '/icon.png', type: 'image/x-icon' }
+        ],
+      },
+    };
+  }
   
   return {
-    title: `Testing Metadata for ${slug}`,
-    description: "Testing if metadata generation causes the error."
-  }
+    title: post.title,
+    description: post.description || `Blog post about ${post.title}`,
+    icons: {
+      icon: [
+        { url: '/icon.png', type: 'image/png' },
+        { url: '/icon.png', type: 'image/x-icon' }
+      ],
+    },
+  };
 }
 
 export function generateStaticParams() {
@@ -62,8 +82,8 @@ export default async function BlogPostPage({ params }: Props) {
           </div>
           
           {post.tags && post.tags.length > 0 && (
-            <div className="flex flex-wrap gap-2 mt-4">
-              {post.tags.map((tag: string) => (
+            <div className="mt-4">
+              {post.tags.map((tag) => (
                 <Tag key={tag} name={tag} />
               ))}
             </div>

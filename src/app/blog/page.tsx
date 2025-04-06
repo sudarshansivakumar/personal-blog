@@ -5,7 +5,13 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "Blog | Sudarshan's Blog",
-  description: "Browse all blog posts by Sudarshan"
+  description: "Browse all blog posts by Sudarshan",
+  icons: {
+    icon: [
+      { url: '/icon.png', type: 'image/png' },
+      { url: '/icon.png', type: 'image/x-icon' }
+    ],
+  },
 };
 
 export default function BlogListPage() {

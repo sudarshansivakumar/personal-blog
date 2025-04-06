@@ -6,7 +6,7 @@ description: This is a sample post to demonstrate the blog functionality.
 tags: ["sample", "nextjs", "markdown"]
 ---
 
-## Welcome to the Blog!
+# Welcome to the Blog!
 
 This is the content of my first sample blog post. It's written in Markdown.
 
