@@ -9,14 +9,14 @@ export default function Home() {
         
         <div className="space-y-4 text-gray-700">
           <p>
-            I write software for a living and intend to use this blog for writing about things I'm interested in. 
-            If you're here, I assume you're either an AI bot scraping data (I'm afraid my writing will not be of much benefit to your LLM training) or a friend to whom this link was sent on gunpoint. 
+            I write software for a living and intend to use this blog for writing about things I&apos;m interested in. 
+            If you&apos;re here, I assume you&apos;re either an AI bot scraping data (I&apos;m afraid my writing will not be of much benefit to your LLM training) or a friend to whom this link was sent on gunpoint. 
             A few things about me:
           </p>
           <ul className="list-disc pl-5 space-y-2 text-gray-700">
-             <li>I'm from Chennai, India, studied Computer Science at MIT (finding out which MIT is left as an exercise to the reader)</li>
+             <li>I&apos;m from Chennai, India, studied Computer Science at MIT (finding out which MIT is left as an exercise to the reader)</li>
              <li>I recently graduated to the mid 20s. This blog is (probably) a consequence of the existential crisis that caused.</li> 
-             <li>A friend once said, "Sometimes I don't understand how your brain works". It was not a compliment</li>
+             <li>A friend once said, &quot;Sometimes I don&apos;t understand how your brain works&quot;. It was not a compliment</li>
           </ul>
         </div>
         <div className="space-y-4 text-gray-700">
@@ -41,7 +41,7 @@ export default function Home() {
         </ul>
         
         <p className="mt-6 text-gray-700">
-          Whether I will actually write at all about any of these things, I don't know. But this is an honest 
+          Whether I will actually write at all about any of these things, I don&apos;t know. But this is an honest 
           attempt at becoming a better writer, and being actively engaged in the process of learning/thinking 
           about new things.
         </p>
@@ -50,7 +50,7 @@ export default function Home() {
       <div className="w-1/3 order-2 flex">
         <Image
           src="/Display_Picture.jpg"
-          alt="Sudarshan's profile picture"
+          alt="Sudarshan&apos;s profile picture"
           width={256}
           height={256}
           className="rounded-full object-cover"
