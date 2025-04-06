@@ -555,7 +555,7 @@ def get():
     
     page_content = Div(
         P(
-            "A collection of my thoughts and explorations.",
+            "A collection of my various ramblings.",
             style="font-size: 1.2rem; margin-bottom: 1rem; font-style: italic; color: var(--muted-text);"
         ),
         Div(style="width: 50px; height: 3px; background-color: var(--accent-color); margin-bottom: 2rem;"),
