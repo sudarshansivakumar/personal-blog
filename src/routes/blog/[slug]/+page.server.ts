@@ -23,7 +23,7 @@ export async function load({ params }: PageServerLoadEvent) {
         error(404, 'Not found'); // Treat template as not found
     }
 
-    const postsDir = path.join(process.cwd(), 'content', 'posts');
+    const postsDir = path.join(process.cwd(), 'static/content', 'posts');
     const filePath = path.join(postsDir, `${slug}.md`);
 
     if (!fs.existsSync(filePath)) {
@@ -58,7 +58,7 @@ export async function load({ params }: PageServerLoadEvent) {
 
 // Add this function to generate entries for prerendering
 export async function entries() {
-    const postsDir = path.join(process.cwd(), 'content', 'posts');
+    const postsDir = path.join(process.cwd(), 'static/content', 'posts');
     try {
         const allFilenames = fs.readdirSync(postsDir);
         // Filter for markdown files, exclude template, and map to slug objects
