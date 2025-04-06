@@ -2,15 +2,15 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="flex flex-col md:flex-row items-start justify-between gap-12">
-      <div className="md:w-2/3 order-2 md:order-1">
+    <main className="flex flex-col md:flex-row items-start justify-between max-w-6xl mx-auto px-4 py-8 gap-8">
+      <div className="w-full md:w-2/3 order-2 md:order-1">
         <h1 className="text-4xl font-bold mb-4 mt-0 text-gray-900">Hi, I&apos;m Sudarshan</h1>
         <p className="text-lg mb-6 text-gray-600">Welcome to the repository of my intrusive thoughts</p>
         
         <div className="space-y-4 text-gray-700">
           <p>
             I write software for a living and currently work at{" "}
-            <a href="https://clearfeed.com" className="text-blue-600 hover:underline font-medium">
+            <a href="https://clearfeed.ai" className="text-blue-600 hover:underline font-medium">
               Clearfeed
             </a>{" "}
             as an AI/ML Engineer. I joined Clearfeed as an intern in my eighth semester 
@@ -53,14 +53,14 @@ export default function Home() {
         </p>
       </div>
       
-      <div className="md:w-1/3 order-1 md:order-2 w-full flex justify-center md:justify-end mb-8 md:mb-0">
-        <div className="rounded-full overflow-hidden w-48 h-48 md:w-64 md:h-64 lg:w-72 lg:h-72 shadow-lg">
+      <div className="w-full md:w-1/3 order-1 md:order-2 flex justify-center md:justify-end">
+        <div className="relative aspect-square w-48 md:w-64 overflow-hidden rounded-full">
           <Image
             src="/Display_Picture.jpg"
             alt="Sudarshan's profile picture"
-            width={300}
-            height={300}
-            className="object-cover w-full h-full"
+            fill
+            sizes="(max-width: 768px) 192px, 256px"
+            className="object-cover"
             priority
           />
         </div>

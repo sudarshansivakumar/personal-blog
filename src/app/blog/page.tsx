@@ -4,7 +4,7 @@ import { formatDate } from '@/lib/utils'; // Assuming you have this utility
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Blog | Sudarshan's Blog",
+  title: "Word salad",
   description: "Browse all blog posts by Sudarshan",
   icons: {
     icon: [
@@ -23,7 +23,7 @@ export default function BlogListPage() {
         <h1 className="text-4xl font-bold mb-8 mt-0">Blog Posts</h1>
 
         {posts.length === 0 ? (
-          <p className="text-lg mb-12">No blog posts found. Check back soon!</p>
+          <p className="text-lg mb-12">I promise there will be some writing here <s>soon</s> eventually.</p>
         ) : (
           <div className="grid gap-8">
             {posts.map((post) => (

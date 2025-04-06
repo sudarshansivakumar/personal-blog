@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Sudarshan's Blog",
+  title: "Hello world",
   description: "Welcome to the repository of my intrusive thoughts",
   icons: [
     { rel: 'icon', url: '/icon.png' },
