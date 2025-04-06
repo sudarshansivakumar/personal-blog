@@ -2,8 +2,8 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="flex flex-col md:flex-row items-start justify-between max-w-6xl mx-auto px-4 py-8 gap-8">
-      <div className="w-full md:w-2/3 order-2 md:order-1">
+    <main className="flex flex-row items-start justify-between max-w-6xl mx-auto px-4 py-8 gap-8">
+      <div className="w-2/3 order-1">
         <h1 className="text-4xl font-bold mb-4 mt-0 text-gray-900">Hi, I&apos;m Sudarshan</h1>
         <p className="text-lg mb-6 text-gray-600">Welcome to the repository of my intrusive thoughts</p>
         
@@ -53,7 +53,7 @@ export default function Home() {
         </p>
       </div>
       
-      <div className="w-full md:w-1/3 order-1 md:order-2 flex justify-center md:justify-end">
+      <div className="w-1/3 order-2 flex">
         <Image
           src="/Display_Picture.jpg"
           alt="Sudarshan's profile picture"
