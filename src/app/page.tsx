@@ -54,16 +54,14 @@ export default function Home() {
       </div>
       
       <div className="w-full md:w-1/3 order-1 md:order-2 flex justify-center md:justify-end">
-        <div className="relative aspect-square w-48 md:w-64 overflow-hidden rounded-full">
-          <Image
-            src="/Display_Picture.jpg"
-            alt="Sudarshan's profile picture"
-            fill
-            sizes="(max-width: 768px) 192px, 256px"
-            className="object-cover"
-            priority
-          />
-        </div>
+        <Image
+          src="/Display_Picture.jpg"
+          alt="Sudarshan's profile picture"
+          width={256}
+          height={256}
+          className="rounded-full object-cover"
+          priority
+        />
       </div>
     </main>
   );
