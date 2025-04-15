@@ -18,28 +18,35 @@ export default function BlogListPage() {
   const posts = getAllPosts();
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
+    <div className="max-w-2xl mx-auto px-6 py-12">
       <main>
-        <h1 className="text-4xl font-bold mb-8 mt-0">Blog Posts</h1>
+        <h2 className="mb-8 mt-0">Posts</h2>
 
         {posts.length === 0 ? (
           <p className="text-lg mb-12">I promise there will be some writing here <s>soon</s> eventually.</p>
         ) : (
-          <div className="grid gap-8">
+          <div className="space-y-8 pt-4">
             {posts.map((post) => (
-              <article key={post.slug} className="p-6 border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
-                <h2 className="text-2xl font-semibold mb-2 mt-0">
-                  <Link href={`/blog/${post.slug}`}>
-                    {post.title}
-                  </Link>
-                </h2>
-                <div className="text-sm text-gray-500 mb-3">
-                  {formatDate(post.date)}
+              <article key={post.slug} className="group pb-6">
+                <div className="flex justify-between items-baseline mb-3">
+                  <h3 className="text-xl font-normal">
+                    <Link 
+                      href={`/blog/${post.slug}`}
+                      className="hover:text-black transition-colors"
+                    >
+                      {post.title}
+                    </Link>
+                  </h3>
+                  <span className="text-sm text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                    {formatDate(post.date)}
+                  </span>
                 </div>
-                <p className="text-gray-600 mb-4">{post.description}</p>
-                <Link href={`/blog/${post.slug}`} className="font-medium">
-                  Read more →
-                </Link>
+                
+                {post.description && (
+                  <p className="text-gray-600 leading-relaxed text-sm">
+                    {post.description}
+                  </p>
+                )}
               </article>
             ))}
           </div>

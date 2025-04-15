@@ -9,7 +9,7 @@
 */
 :root {
   --foreground-rgb: 51, 51, 51; /* dark gray for text */
-  --background-rgb: 255, 255, 255; /* slightly off-white for background */
+  --background-rgb: 252, 252, 252; /* slightly off-white background */
   --accent-rgb: 59, 130, 246; /* blue accent color */
   --accent-light-rgb: 219, 234, 254; /* light blue for highlights */
   --muted-rgb: 107, 114, 128; /* muted text color */
@@ -19,26 +19,29 @@
 body {
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-rgb));
-  font-family: var(--font-geist-sans, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 
-    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif);
-  line-height: 1.6;
+  font-family: var(--font-eb-garamond, 'Garamond', Georgia, serif);
+  line-height: 1.7;
+  font-size: 1.125rem; /* Slightly larger text for readability */
 }
 
-/* Reset some default styles */
+/* Headers styling - using Playfair Display for that distinctive New Yorker feel */
 h1, h2, h3, h4, h5, h6 {
   margin-top: 1.5rem;
   margin-bottom: 1rem;
-  font-weight: 600;
-  line-height: 1.25;
+  font-weight: 500;
+  line-height: 1.2;
   color: #111827;
+  font-family: var(--font-playfair, 'Playfair Display', Georgia, serif);
 }
 
 h1 {
-  font-size: 2.25rem;
+  font-size: 2.5rem;
+  letter-spacing: -0.025em;
 }
 
 h2 {
   font-size: 1.875rem;
+  letter-spacing: -0.015em;
 }
 
 h3 {
@@ -46,7 +49,7 @@ h3 {
 }
 
 p {
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
 }
 
 /* Basic link styling */
@@ -99,20 +102,24 @@ nav a {
   color: #374151;
   text-decoration: none;
   font-weight: 500;
+  font-family: var(--font-playfair, 'Playfair Display', Georgia, serif);
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  font-size: 0.875rem;
 }
 
 nav a:hover {
-  color: #3b82f6;
+  color: #000000;
 }
 
 /* Lists */
 ul {
   padding-left: 1.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
 }
 
 li {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.625rem;
 }
 
 /* Custom utility classes */
@@ -135,4 +142,9 @@ li {
   margin-top: 1.5rem;
 }
 
-/* Remove other conflicting @layer base rules if they existed */
+/* Simple container for main content */
+main {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 2rem;
+}
