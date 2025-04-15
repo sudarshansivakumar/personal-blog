@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Special_Elite } from "next/font/google";
+import { Geist, Geist_Mono, EB_Garamond, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 
@@ -13,11 +13,18 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// Add typewriter-style font
-const specialElite = Special_Elite({
-  variable: "--font-special-elite",
-  weight: "400",
+// Elegant serif for body text (like New Yorker's Caslon)
+const ebGaramond = EB_Garamond({
+  variable: "--font-eb-garamond",
   subsets: ["latin"],
+  display: "swap",
+});
+
+// More distinctive serif for headings
+const playfairDisplay = Playfair_Display({
+  variable: "--font-playfair",
+  subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -37,13 +44,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${specialElite.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${ebGaramond.variable} ${playfairDisplay.variable} antialiased`}
       >
         <div className="min-h-screen">
           <Header />
-          <main className="flex-grow px-4 py-8">
-            {children}
-          </main>
+          {children}
         </div>
       </body>
     </html>
