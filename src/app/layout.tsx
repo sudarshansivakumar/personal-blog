@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Special_Elite } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 
@@ -10,6 +10,13 @@ const geistSans = Geist({
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+// Add typewriter-style font
+const specialElite = Special_Elite({
+  variable: "--font-special-elite",
+  weight: "400",
   subsets: ["latin"],
 });
 
@@ -30,7 +37,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${specialElite.variable} antialiased`}
       >
         <div className="min-h-screen">
           <Header />
