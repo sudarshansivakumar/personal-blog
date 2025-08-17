@@ -18,7 +18,7 @@ export default function BlogListPage() {
   const posts = getAllPosts();
 
   return (
-    <div className="max-w-2xl mx-auto px-6 py-12">
+    <div className="max-w-none mx-auto px-6 py-12">
       <main>
         <h2 className="mb-8 mt-0">Posts</h2>
 
@@ -32,18 +32,18 @@ export default function BlogListPage() {
                   <h3 className="text-xl font-normal">
                     <Link 
                       href={`/blog/${post.slug}`}
-                      className="hover:text-black transition-colors"
+                      className="text-dark-accent hover:text-dark-text-muted transition-colors no-underline"
                     >
                       {post.title}
                     </Link>
                   </h3>
-                  <span className="text-sm text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span className="text-sm text-dark-text-muted opacity-0 group-hover:opacity-100 transition-opacity">
                     {formatDate(post.date)}
                   </span>
                 </div>
                 
                 {post.description && (
-                  <p className="text-gray-600 leading-relaxed text-sm">
+                  <p className="text-dark-text-muted leading-relaxed text-sm">
                     {post.description}
                   </p>
                 )}
