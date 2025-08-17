@@ -1,9 +1,9 @@
 export default function Home() {
   return (
-    <main className="max-w-2xl mx-auto px-6 py-12">
+    <main className="max-w-none mx-auto px-6 py-12">
       <div className="w-full">
         <h2 className="mb-3 mt-0">Hi, I&apos;m Sudarshan</h2>
-        <p className="text-lg mb-8 text-gray-700 italic">Welcome to the repository of my intrusive thoughts</p>
+        <p className="text-lg mb-8 text-dark-text-muted italic">Welcome to the repository of my intrusive thoughts</p>
         
         <div className="space-y-6">
           <p>

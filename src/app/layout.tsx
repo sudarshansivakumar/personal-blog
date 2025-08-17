@@ -44,9 +44,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${ebGaramond.variable} ${playfairDisplay.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${ebGaramond.variable} ${playfairDisplay.variable} antialiased bg-dark-bg text-dark-text`}
       >
-        <div className="min-h-screen">
+        <div className="min-h-screen bg-dark-bg">
           <Header />
           {children}
         </div>
